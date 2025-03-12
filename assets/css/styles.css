@@ -1,0 +1,151 @@
+@font-face {
+  font-family: "Superlumina";
+  src: url('./fonts/superlumina/SuperluminaVariable-Regular.woff2') format("woff2 support variations"),
+       url('./fonts/superlumina/SuperluminaVariable-Regular.woff2') format("woff2-variations"),
+       url('./fonts/superlumina/SuperluminaVariable-Regular.woff2') format("woff2") tech("variations");
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+}
+
+html {
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+:root {
+  --font-density: 0;
+  --font-speed: 0;
+}
+
+body {
+  background: gray;
+  color: white;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+h1 {
+  margin: 0px;
+  padding: 0px;
+}
+
+.blocks {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-rows: 10vw 1fr 1fr;
+  grid-template-columns: 1fr 5vw 1fr 1fr;
+  grid-template-areas: 
+    "title title title title"
+    "experimental about worlds roads"
+    "experimental about email email";
+
+  font-family: "Superlumina";
+  font-variation-settings: 'DNST' var(--font-density), "SPED" var(--font-speed);
+  line-height: 1em;
+}
+
+
+[class^="block-"] {
+  border: 1px solid darkgray;
+  white-space: nowrap;
+}
+
+.block-futurefull {
+  grid-area: title;
+  --font-density: 100;
+  font-size: 10vw;
+  line-height: 10vw;
+  font-variation-settings: 'DNST' var(--font-density), "SPED" var(--font-speed);
+}
+
+.block-is-telling-experimental-stories {
+  grid-area: experimental;
+  display: grid;
+  grid-template-rows: 4vw 20vw 1fr;
+}
+
+.block-about-the {
+  grid-area: about;
+  writing-mode: vertical-lr;
+  font-size: 5vw;
+  text-align: justify;
+  text-justify: inter-character;
+  line-height: 5vw;
+  font-variation-settings: 'DNST' 38, "SPED" 100;
+}
+
+.block-worlds-we-want {
+  grid-area: worlds;
+}
+
+.block-and-the-roads-to-get-there {
+  grid-area: roads;
+}
+
+.block-email {
+  grid-area: email;
+  justify-content: end;
+  align-content: end;
+}
+
+.block-drop {
+  font-variation-settings: 'DNST' 38, "SPED" var(--font-speed);
+}
+
+input, button {
+  display: block;
+  width: 100%;
+}
+
+
+
+.block-is-telling {
+  --font-density: 100;
+  font-variation-settings: 'DNST' var(--font-density), "SPED" var(--font-speed);
+  font-size: 4vw;
+  line-height: 4vw;
+}
+
+.block-experimental {
+  --font-density: 3;
+  font-variation-settings: 'DNST' var(--font-density), "SPED" var(--font-speed);
+  font-size: 20vw;
+  line-height: 20vw;
+}
+
+.block-stories {
+  --font-density: 1;
+  font-variation-settings: 'DNST' var(--font-density), "SPED" var(--font-speed);
+  font-size: 40vw;
+  line-height: 30vw;
+  /* transform: translateY(50%) scaleY(2); */
+}
+
+
+
+@media screen and (max-width: 700px) {
+  .blocks {
+    grid-template-columns: 10vh 1fr;
+    grid-template-rows: 1fr 5vw 1fr 1fr 1fr;
+
+    grid-template-areas:
+      "title experimental"
+      "title about"
+      "title worlds"
+      "title roads"
+      "title email"
+  }
+
+  .block-futurefull {
+    writing-mode: vertical-lr;
+    font-size: 10vh;
+    line-height: 10vh;
+  }
+
+  .block-about-the {
+    writing-mode: horizontal-tb;
+  }
+}
