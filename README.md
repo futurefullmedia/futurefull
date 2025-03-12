@@ -1,2 +1,2 @@
-# futurefull.org
+# futurefull
 Futurefull Website
