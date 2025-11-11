@@ -1,8 +1,8 @@
 /*
 
 ways to fill space:
-font size
-density
-letter-spacing
+font size (min-max)
+density (min-max)
+letter-spacing (min-max)
 transform(translate and scale)
 */

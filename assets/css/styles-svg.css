@@ -7,27 +7,71 @@
 
 html {
   padding: 0px;
+  margin: 0px;
   box-sizing: border-box;
+  
 }
 
 :root {
   --font-density: 0;
   --font-speed: 0;
+  --color-yellow: #FBCA16;
+  --color-blue: #161543;
+  --color-red: #FA4C57;
+  --color-yellow-light: #FFF8DC;
 }
 
 body {
-  background: gray;
-  color: white;
+  background: var(--color-yellow);
+  color: var(--color-blue);
+  position: absolute;
   width: 100%;
   height: 100%;
-  padding: 1vw;
   margin: 0px;
-
+  padding: 0px;
 }
 
 h1 {
   margin: 0px;
   padding: 0px;
+}
+
+svg {
+  fill: currentColor;
+  /* border: 1px solid blue; */
+}
+
+.color-red {
+  color: var(--color-red);
+}
+
+.color-yellow {
+  color: var(--color-yellow);
+}
+
+.color-blue {
+  color: var(--color-blue);
+}
+
+.color-red {
+  color: var(--color-red);
+}
+
+.size-sm {
+  font-size: 1rem;
+}
+
+.size-md {
+  font-size: 1.15rem;
+}
+
+.size-lg {
+  font-size: 1.75rem;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--color-red);
 }
 
 
@@ -42,8 +86,8 @@ h1 {
 
 .blocks {
   display: grid;
-  width: calc(100% -2vw);
-  height: calc(100% - 2vw);
+  width: calc(100% - 40px);
+  height: calc( 100% - 40px );
   grid-template-rows: 10vw 1fr 1fr;
   grid-template-columns: 1fr 5vw 1fr 1fr;
   grid-template-areas: 
@@ -55,6 +99,7 @@ h1 {
   font-variation-settings: 'DNST' var(--font-density), "SPED" var(--font-speed);
   line-height: 1;
   gap: 1vw;
+  margin: 20px;
 }
 
 .blocks {
@@ -68,46 +113,19 @@ h1 {
 
 .block-futurefull {
   grid-area: title;
-  --font-density: 100;
-  font-size: 10vw;
-  font-variation-settings: 'DNST' var(--font-density), "SPED" var(--font-speed);
 }
-
-.block-is-telling {
-  font-variation-settings: 'DNST' 100;
-  font-size: 4vw;
-}
-
-.block-experimental {
-  font-variation-settings: 'DNST' 3;
-  font-size: 20vw;
-}
-
-.block-stories {
-  font-variation-settings: 'DNST' 1;
-  font-size: 40vw;
-}
-
-
-
 
 
 
 .block-is-telling-experimental-stories {
   grid-area: experimental;
   display: grid;
-  grid-template-rows: 4vw 2fr 3fr;
+  grid-template-rows: 4vh 1fr 1fr;
   gap: 1vw;
 }
 
 .block-about-the {
   grid-area: about;
-  writing-mode: vertical-lr;
-  font-size: 5vw;
-  text-align: justify;
-  text-justify: inter-character;
-  font-variation-settings: 'DNST' 38, "SPED" 100;
-  letter-spacing: 20;
 }
 
 .block-worlds-we-want {
@@ -118,18 +136,35 @@ h1 {
   grid-area: roads;
 }
 
+p,
+h1,
+h2 {
+  margin: 0px;
+}
+
 .block-email {
+  font-family: "Montserrat";
   grid-area: email;
   display: flex;
   flex-direction: column;
   justify-content: end;
-  gap: 10px;
+
+  p {
+    white-space: normal;
+  }
+
+  & > * + *  {
+    margin-top: 1rem;
+  }
+
+    *+h2 {
+      margin-top: 2rem;
+    }
 }
 
-.block-drop {
-  font-size: 4vw;
-  font-variation-settings: 'DNST' 38, "SPED" var(--font-speed);
-}
+
+
+
 
 input, button {
   display: block;
@@ -138,7 +173,6 @@ input, button {
 
 
 .block-worlds-we-want, .block-and-the-roads-to-get-there {
-  font-size: 8vh;
   display: grid;
   grid-template-rows: 1fr 1fr;
 }
@@ -148,69 +182,39 @@ input, button {
   grid-template-columns: 4fr 1fr;
 }
 
-.block-worlds {
-  font-variation-settings: 'DNST' 38;
-}
 
-.block-we {
-  font-variation-settings: 'DNST' 12, 'SPED' 100;
-}
+@media screen and (max-width: 1000px) {
+  .blocks {
+  grid-template-rows: 10vw 1fr 1fr 1fr;
+  grid-template-columns: 1fr 5vw 1fr;
+  
+    grid-template-areas:
+      "title title title"
+      "experimental about worlds"
+      "experimental about roads"
+      "experimental about email";
 
-.block-want {
-  font-variation-settings: 'DNST' 70;
-}
-
-
-
-
-
-.block-and-the-roads-to {
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
-}
-
-.block-and-the {
-  font-size: 4vh;
-}
-
-.block-roads {
-  font-variation-settings: 'DNST' 48;
-}
-
-.block-get-there {
-  font-variation-settings: 'DNST' 38;
+    /* border: 1px solid green; */
+  }
 }
 
 
-
-
-.block-drop {
-  font-variation-settings: 'DNST' 48;
-}
 
 
 
 @media screen and (max-width: 700px) {
   .blocks {
-    grid-template-columns: 10vh 1fr;
-    grid-template-rows: 1fr 5vw 1fr 1fr 1fr;
+    grid-template-columns: 10vh 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 5vw 1fr 1fr 1fr;
 
     grid-template-areas:
-      "title experimental"
-      "title about"
-      "title worlds"
-      "title roads"
-      "title email"
-  }
-
-  .block-futurefull {
-    writing-mode: vertical-lr;
-    font-size: 10vh;
-    line-height: 10vh;
-  }
-
-  .block-about-the {
-    writing-mode: horizontal-tb;
+      "title experimental experimental"
+      "title experimental experimental"
+      "title experimental experimental"
+      "title about about"
+      "title worlds roads"
+      "email email email"
+      "email email email"
   }
 
   .mobile {
@@ -219,6 +223,10 @@ input, button {
 
   .desktop {
     display: none;
+  }
+
+  .size-lg {
+    font-size: 1.25rem;
   }
 }
 
@@ -231,8 +239,4 @@ input, button {
 [class^="block-"] svg {
   width: 100%;
   height: 100%;
-}
-
-svg {
-  fill: white;
 }
