@@ -209,16 +209,16 @@ input, button {
 @media screen and (max-width: 700px) {
   .blocks {
     grid-template-columns: 10vh 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 5vw 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 5vw 1fr;
 
     grid-template-areas:
       "title experimental experimental"
       "title experimental experimental"
       "title experimental experimental"
       "title about about"
-      "title worlds roads"
-      "email email email"
-      "email email email"
+      "title worlds roads";
+
+    min-height: 60vh;
   }
 
   .mobile {
