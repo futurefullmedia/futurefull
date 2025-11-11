@@ -80,7 +80,7 @@ a {
 }
 
 .desktop {
-  display: block;
+  display: initial;
 }
 
 
@@ -162,7 +162,9 @@ h2 {
     }
 }
 
-
+.block-email.mobile {
+  display: none;
+}
 
 
 
@@ -229,6 +231,10 @@ input, button {
     display: none;
   }
 
+
+    .block-email.mobile {
+      display: block;
+    }
   .size-lg {
     font-size: 1.25rem;
   }
