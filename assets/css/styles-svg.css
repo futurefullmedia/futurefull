@@ -220,7 +220,7 @@ input, button {
       "title about about"
       "title worlds roads";
 
-    min-height: 60vh;
+    height: 120vw;
   }
 
   .mobile {
