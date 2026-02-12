@@ -70,8 +70,22 @@ svg {
   line-height: 1.5;
 }
 
+.size-xl {
+  font-size: 2rem;
+  line-height: 1.5;
+}
+
+.size-2x {
+  font-size: 2.5rem;
+  line-height: 1.5;
+}
 a {
   color: var(--color-red);
+  transition: color .5s ease-in-out;
+}
+
+a:hover {
+  color: var(--color-blue);
 }
 
 
@@ -182,6 +196,35 @@ input, button {
 .block-worlds-we {
   display: grid;
   grid-template-columns: 4fr 1fr;
+}
+
+
+
+form {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: .5rem;
+}
+
+input {
+  padding: .5rem;
+  border: none;
+  border-radius: .5rem;
+  font-size: 1.25rem;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--color-blue);
+}
+
+input[type="submit"] {
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: var(--color-blue);
+  color: var(--color-yellow);
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: var(--color-red);
 }
 
 
