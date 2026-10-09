@@ -1,0 +1,60 @@
+/* A bordered, colored box. Give it a surface-* class. */
+.card{
+  padding:var(--s1);
+  border:var(--border-thick) solid var(--border-color);
+  border-radius:var(--radius-m);
+  text-decoration:none;
+}
+
+/* event: date, details, and an optional RSVP button in one wrapping row */
+.event{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:var(--s0) var(--s1);
+}
+.event__date{
+  flex:0 0 4.5rem;
+  font-size:var(--step-3);
+  line-height:.9;
+  text-align:center;
+}
+.event__month{
+  margin-block-end:.3em;
+  font-family:var(--font-body);
+  color:var(--surface-accent);
+}
+.event__body{flex:1 1 14rem}
+.event__meta{
+  font-size:var(--step--1);
+  font-weight:600;
+}
+.event__blurb{
+  max-inline-size:60ch;
+  font-size:.9rem;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.event .title{font-size:var(--step-1)}
+
+/* news: a whole-card link */
+.news{
+  display:flex;
+  flex-direction:column;
+  gap:var(--s-1);
+}
+.news .title{font-size:var(--step-1)}
+.news__cta{margin-block-start:auto}
+
+/* stat: big number over a caption */
+.stat__figure{
+  display:block;
+  font-size:var(--step-3);
+  line-height:.9;
+}
+.stat__label{
+  font-size:.95rem;
+  font-weight:600;
+}

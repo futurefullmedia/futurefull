@@ -1,0 +1,103 @@
+/* Compositions: layout only. They set no colors and know nothing about content.
+   Spacing is controlled by --space; set it with a .space-s-2 … .space-s3 class on any of them. */
+
+.space-s-2{--space:var(--s-2)}
+.space-s-1{--space:var(--s-1)}
+.space-s0{--space:var(--s0)}
+.space-s1{--space:var(--s1)}
+.space-s2{--space:var(--s2)}
+.space-s3{--space:var(--s3)}
+
+/* wrap: centered column with gutters */
+.wrap{
+  max-inline-size:var(--wrap-width);
+  margin-inline:auto;
+  padding-inline:var(--s1);
+}
+
+/* region: vertical breathing room for a page section */
+.region{padding-block:var(--region-space)}
+
+/* center: narrow a single element to --measure and center it */
+.center{
+  max-inline-size:var(--measure);
+  margin-inline:auto;
+}
+
+/* stack: even vertical spacing between direct children */
+/* --space doesn't inherit, so the stack hands its value to its children through a private variable it re-sets on each stack */
+.stack{--stack-gap:var(--space,var(--s1))}
+:where(.stack > * + *){margin-block-start:var(--stack-gap)}
+
+/* flow: text rhythm, proportional to the font size (use inside prose) */
+.flow{--flow-gap:var(--flow-space,1em)}
+:where(.flow > * + *){margin-block-start:var(--flow-gap)}
+
+/* prose: running text. Caps the line length and styles links */
+.prose{
+  max-inline-size:var(--measure);
+  text-wrap:pretty;
+}
+.prose a{
+  color:var(--surface-accent);
+  font-weight:800;
+}
+
+/* cluster: items in a row that wrap, with a consistent gap */
+.cluster{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:var(--space,var(--s-1));
+}
+.justify-between{justify-content:space-between}
+.justify-center{justify-content:center}
+
+/* switcher: side by side when there's room, stacked when there isn't. No media queries.
+   Change the breakpoint with --threshold (container width, not viewport). */
+.switcher{
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--space,var(--s2));
+}
+.switcher > *{
+  flex-grow:1;
+  flex-basis:calc((var(--threshold,40rem) - 100%) * 999);
+}
+.valign-center{align-items:center}
+.valign-start{align-items:flex-start}
+
+/* sidebar: one fixed-width column beside a flexible one; stacks when the flexible one would get under --content-min.
+   The sidebar is the first child, or the last with data-side="end". */
+.sidebar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-start;
+  gap:var(--space,var(--s2));
+}
+.sidebar > :first-child{
+  flex-basis:var(--sidebar-width,20rem);
+  flex-grow:1;
+}
+.sidebar > :last-child{
+  flex-basis:0;
+  flex-grow:999;
+  min-inline-size:var(--content-min,50%);
+}
+.sidebar[data-side="end"] > :first-child{
+  flex-basis:0;
+  flex-grow:999;
+  min-inline-size:var(--content-min,50%);
+}
+.sidebar[data-side="end"] > :last-child{
+  flex-basis:var(--sidebar-width,20rem);
+  flex-grow:1;
+  min-inline-size:0;
+}
+
+/* grid: as many columns of at least --min as fit */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(var(--min,14rem),100%),1fr));
+  gap:var(--space,var(--s1));
+}

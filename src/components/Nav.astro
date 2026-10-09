@@ -1,0 +1,34 @@
+---
+import Logo from "./Logo.astro";
+---
+<nav class="cluster justify-between">
+  <a href="/"><Logo className="navmark"/></a>
+  <div class="cluster space-s1">
+    <a href="https://instagram.com/futurefullstories" style="font-size: var(--s2)"><i class="fab fa-instagram"></i></a>
+    <a href="https://threads.com/futurefullstories" style="font-size: var(--s2)"><i class="fab fa-threads"></i></a>
+    <!-- <a href="/#what">What</a> -->
+    <!-- <a href="/who-we-are">Who we are</a> -->
+    <!-- <a href="/#olamina">Olamina</a> -->
+    <!-- <a href="/#join">Join</a> -->
+    <a class="btn" data-size="small" href="https://fundraising.fracturedatlas.org/futurefull-stories">Donate</a>
+  </div>
+</nav>
+
+<style is:global>
+  .navmark {
+    inline-size: 10rem;
+  }
+</style>
+
+
+<style>
+  nav{padding-block:var(--s1)}
+  img{block-size:56px}
+  a:not(.btn){
+    font-size:var(--step--1);
+    font-weight:600;
+    letter-spacing:.08em;
+    text-decoration:none;
+    text-transform:uppercase;
+  }
+</style>

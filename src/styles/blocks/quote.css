@@ -1,0 +1,22 @@
+/* big-quote: the mission line. <em> picks up the accent color. */
+.big-quote{
+  font-size:var(--step-4);
+  line-height:.98;
+  text-wrap:balance;
+}
+.big-quote em{
+  font-style:normal;
+  color:var(--surface-accent);
+}
+
+/* pullquote: a participant quote with a colored rule */
+.pullquote{
+  padding-inline-start:var(--s0);
+  border-inline-start:6px solid var(--surface-accent);
+  font-size:1.1rem;
+  font-weight:600;
+}
+.pullquote cite{
+  margin-block-start:.5em;
+  font-style:normal;
+}

@@ -1,0 +1,28 @@
+/* Numbered list with a rotated badge per item. Use <ol class="steps" role="list">. */
+.steps{counter-reset:step}
+.steps li{
+  counter-increment:step;
+  position:relative;
+  padding-block:var(--s0);
+  padding-inline-start:4rem;
+  border-block-start:var(--border-thin) solid color-mix(in srgb,currentColor 25%,transparent);
+  font-weight:600;
+}
+.steps li::before{
+  content:counter(step);
+  position:absolute;
+  inset-inline-start:0;
+  inset-block-start:.6rem;
+  display:grid;
+  place-items:center;
+  inline-size:2.6rem;
+  block-size:2.6rem;
+  border-radius:12px;
+  background:var(--color-coral);
+  color:var(--color-navy);
+  font-family:var(--font-display);
+  font-weight:900;
+  font-variation-settings:"DNST" var(--dnst);
+  font-size:1.4rem;
+  rotate:-6deg;
+}

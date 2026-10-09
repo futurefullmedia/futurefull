@@ -1,0 +1,158 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from "../components/Hero.astro";
+import { getEvents, fmt } from '../lib/calendar';
+import { getNews } from '../lib/newsletter';
+
+const [events, news] = await Promise.all([getEvents(), getNews()]);
+
+// Olamina button: the next scheduled Olamina circle with a link, otherwise a follow prompt.
+const nextOlamina = events.find((e) => /olamina/i.test(e.title) && e.url);
+const cta = nextOlamina
+  ? { href: nextOlamina.url, label: `RSVP: ${fmt.short(nextOlamina.start)}` }
+  : { href: 'https://www.instagram.com/futurefullstories', label: 'Follow us for the next circle' };
+
+const chips = ['Tabletop & LARP folks', 'Grown up theatre kids', 'Improv musicians', 'Worldbuilders', 'Community organizers', 'Sci-fi dreamers', 'Queer visionaries', 'Afrofuturists', 'Comic junkies'];
+const newsSurfaces = ['surface-navy', 'surface-coral', 'surface-sun'];
+const newsDate = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+---
+
+<Base title="Futurefull">
+  <Hero/>
+  <div class="strip"></div>
+
+  <section id="what" class="region surface-sun">
+    <div class="wrap stack">
+      <h2><span class="density-light">Telling stories about better futures.</span> Together.</h2>
+      <p class="lede">
+        We make immersive events, tabletop games, and actual play where the audience builds the story together.
+      </p>
+      <ul class="cluster" role="list">
+        {chips.map((c) => <li class="tag surface-cream" data-tilt>{c}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section id="mission" class="region surface-navy text-center">
+    <div class="wrap stack space-s2">
+      <span class="eyebrow accent">Our mission</span>
+      <blockquote class="big-quote display center" style="--measure:18ch">Tomorrow <em>exists.</em></blockquote>
+      <div class="prose center flow weight-semibold" style="--measure:52ch;--flow-space:1.1em">
+        <p class="lede">
+          We create experiences that teach people to take collective ownership of the futures we make together. Through play, whimsy, and cooperation, we honor imagination while never losing sight of our roots or the real issues we face as a society.
+        </p>
+        <p class="lede accent">We center the perspectives of queer and BIPOC folks, but all are welcome.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="happening" class="region">
+    <div class="wrap stack space-s2">
+      <h2><span class="density-light">In the</span> near future</h2>
+      <div class="sidebar space-s2" data-side="end" style="--sidebar-width:24rem">
+        <div class="stack">
+          <h3 class="eyebrow" data-rule>Upcoming</h3>
+          {events.length === 0 && <p class="empty muted weight-semibold">Nothing on the calendar right now.</p>}
+          <ul class="stack space-s0" role="list">
+            {events.map((e) => (
+              <li>
+                <article class="card event surface-white">
+                  <div class="event__date display">
+                    <small class="event__month eyebrow">{fmt.month(e.start)}</small>{fmt.day(e.start)}
+                  </div>
+                  <div class="event__body stack space-s-2">
+                    <h4 class="title">{e.title}</h4>
+                    <p class="event__meta">
+                      <span class:list={['badge', e.kind === 'irl' ? 'surface-sun' : 'surface-navy']}>{e.kind === 'irl' ? 'IRL' : 'URL'}</span>{fmt.time(e.start)} · {e.venue}
+                    </p>
+                    {e.blurb && <p class="event__blurb">{e.blurb}</p>}
+                  </div>
+                  {e.url && <a class="btn" href={e.url}>{e.kind === 'irl' ? 'RSVP' : 'Join'}</a>}
+                </article>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="stack">
+          <h3 class="eyebrow" data-rule>Updates</h3>
+          {news.length === 0 && <p class="empty muted weight-semibold">No updates yet.</p>}
+          <ul class="stack space-s0" role="list">
+            {news.map((n, i) => (
+              <li>
+                <a class:list={['card news', newsSurfaces[i % newsSurfaces.length]]} href={n.link}>
+                  <small class="eyebrow">{newsDate(n.date)}</small>
+                  <h4 class="title">{n.title}</h4>
+                  <span class="eyebrow news__cta">Read →</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="olamina" class="region surface-navy">
+    <div class="wrap switcher space-s3 valign-center">
+      <div class="slot" data-motion="drift">
+        <img src="/olamina-1.jpg" width="2200" height="1467" style="--n:0; --from:12%; --to:82%" alt="Participants gathered in a circle at a pop-up in a Brooklyn shop, laughing and trading ideas while a violinist and a drummer play." />
+        <img src="/olamina-2.jpg" width="2200" height="1467" style="--n:1; --from:8%; --to:92%" loading="lazy" alt="Close-up of a drummer's hands resting on the head of a djembe." />
+        <img src="/olamina-3.jpg" width="2200" height="1467" style="--n:2; --from:12%; --to:88%" loading="lazy" alt="A drummer and a violinist play for a circle of participants standing and sitting around a red table." />
+        <img src="/olamina-4.jpg" width="2200" height="1467" style="--n:3; --from:70%; --to:22%" loading="lazy" alt="Close-up of an open hand just releasing a die, which tumbles into a wooden rolling tray on a red table." />
+      </div>
+      <div class="stack">
+        <h2 class="accent">Olamina</h2>
+        <p class="lede">Our flagship experience, built on the <b>Rolldice</b> system. Come together and send guidance to a girl living in the deep future.</p>
+        <ol class="steps" role="list">
+          <li>Play as an ancestor: send inspiration, complications, or pure expression.</li>
+          <li>Roll dice to settle disagreements.</li>
+          <li>Our story beats become an improvised call-and-response song with live musicians.</li>
+        </ol>
+        <a class="btn" href={cta.href}>{cta.label}</a>
+        <p class="prose weight-semibold" style="--measure:46ch">
+          Interested in bringing a Rolldice circle to your org? Reach out! <a href="mailto:hello@futurefullstories.com?subject=Interested%20in%20an%20Olamina%20circle!">hello@futurefullstories.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+<section id="projects" class="region">
+  <div class="wrap stack">
+    <h2>Our Visions</h2>
+    <div class="switcher">
+      <div class="card"><h3>Veilpiercers</h3><p>The Paine family is on a journey to discover the secrets of their bloodline and take back the souls of their ancestors from the grasp of a greedy, capitalist company aiming to monetize the dead.</p><p>A Black-AF Actual Play featuring a cast of knockout, CRIT-award-winning talent.</p></div>
+      <div class="card"><h3>Futurist Events</h3><p>We run events both IRL and URL that connect artists, creators, and activists in Philadelphia and beyond. Honor your imagination, connect with your values, and learn practical ways to make the future real.</p></div>
+      <div class="card"><h3>The Butterfly Microgrant</h3><p>Our microgrant for select artists and creators who just need a small push to bring their visions to light. Sometimes the tiniest spark can create an entire new future.</p></div>
+    </div>
+  </div>
+</section>
+
+
+
+  <section id="donate" class="region surface-coral text-center">
+    <div class="wrap stack">
+      <h2 class="center" style="--measure:14ch"><span class="density-light">Help us keep</span><br/>making futures</h2>
+      <p class="lede center" style="--measure:44ch">Donations help subsidize our community events and microgrant program.</p>
+      <div><a class="btn" href="https://fundraising.fracturedatlas.org/futurefull-stories">Donate</a></div>
+    </div>
+  </section>
+
+  <section id="join" class="region surface-sun text-center">
+    <div class="wrap stack">
+      <h2 class="center" style="--measure:12ch"><span class="density-light">Be part of what happens</span> next</h2>
+      <p>The occasional update on art, stories, and play, and the future. No spam.</p>
+      <form
+        class="cluster justify-center"
+       
+        action="https://buttondown.com/api/emails/embed-subscribe/futurefullstories"
+        method="post"
+        target="popupwindow"
+        onsubmit="window.open('https://buttondown.com/futurefullstories', 'popupwindow')"
+      >
+        <input class="input" type="email" name="email" placeholder="you@somewhere.good" required aria-label="Email address" />
+        <input type="hidden" value="1" name="embed" />
+        <button class="btn" data-variant="accent" type="submit">Count me in</button>
+      </form>
+    </div>
+  </section>
+</Base>

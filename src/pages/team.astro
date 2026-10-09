@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+
+// Roles from the sponsor deck draft — confirm names, titles, and that everyone is okay being listed.
+const team = [
+  { name: 'Dain Saint', role: 'Founder & Artistic Director' },
+  { name: 'Cat Ramirez', role: 'Producer' },
+  { name: 'Mel Hsu', role: 'Operations' },
+  { name: 'Aetherius Bordeaux', role: 'Community & Outreach' },
+  { name: 'Taj Rauch', role: 'Experience Design' },
+  { name: 'Markiesha Thompson', role: 'Development' },
+  { name: 'Troi Williams', role: 'Social Media' },
+];
+const avatarSurfaces = ['surface-sun', 'surface-coral', 'surface-navy', 'surface-white'];
+const initials = (n: string) => n.split(' ').map((w) => w[0]).join('');
+const partners = ['The Laundromat Project', 'Caribbean Community of Philadelphia', 'Young Artists Program', 'Indy Hall'];
+---
+
+<Base title="Who we are — Futurefull">
+  <header class="surface-sun"><div class="wrap"><Nav /></div></header>
+
+  <section id="who" class="region">
+    <div class="wrap stack space-s3">
+      <div class="switcher space-s3 valign-start">
+        <div class="stack">
+          <span class="eyebrow accent">Who we are</span>
+          <h2>An interfuturist storytelling collective</h2>
+          <p class="title" style="font-size:var(--step-2);text-wrap:balance">Telling stories about better futures and the roads to get there.</p>
+          <p class="lede">
+            Queer BIPOC nerds and the people who love them. Actual play, immersive theatre, TTRPGs, live events, storytelling circles. Participatory, community-centered, speculative and hopeful. Based in Philadelphia, touring beyond it.
+          </p>
+        </div>
+        <ul class="stack space-s0" role="list">
+          <li class="card stat stack surface-navy space-s-1">
+            <b class="stat__figure display">100+</b>
+            <span class="stat__label">Olamina participants across Philadelphia + Brooklyn</span>
+          </li>
+          <li class="card stat stack surface-coral space-s-1">
+            <b class="stat__figure display">Winner</b>
+            <span class="stat__label">Olamina — 2026 Black Immersive Creators Grant</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="stack">
+        <h3 class="eyebrow" data-rule>The people</h3>
+        <ul class="grid" role="list" style="--min:11rem;--space:var(--s1)">
+          {team.map((p, i) => (
+            <li class="stack space-s-1">
+              <div class:list={['slot display', avatarSurfaces[i % avatarSurfaces.length]]} data-shape="square" style="font-size:var(--step-3)">{initials(p.name)}</div>
+              <h4 class="title">{p.name}</h4>
+              <p class="eyebrow accent">{p.role}</p>
+              <p class="text-small muted">[ one-line bio ]</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="stack">
+        <h3 class="eyebrow">Partners</h3>
+        <ul class="cluster" role="list">
+          {partners.map((p) => <li class="tag surface-white">{p}</li>)}
+        </ul>
+      </div>
+
+      <blockquote class="pullquote prose">
+        <p>“This gave me a feeling I haven’t had since I left the church.”</p>
+        <cite class="eyebrow">Olamina participant</cite>
+      </blockquote>
+    </div>
+  </section>
+</Base>

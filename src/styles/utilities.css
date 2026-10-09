@@ -1,0 +1,79 @@
+/* Utilities: one job each. */
+
+/* Surface: sets the background and the colors everything inside should use.
+   Blocks read --surface-* instead of hard-coding colors, so they work on any surface. */
+:root,
+.surface-cream{
+  --surface-bg:var(--color-cream);
+  --surface-fg:var(--color-navy);
+  --surface-accent:var(--color-coral);
+  --surface-action-bg:var(--color-navy);
+  --surface-action-fg:var(--color-cream);
+}
+.surface-white{
+  --surface-bg:var(--color-white);
+  --surface-fg:var(--color-navy);
+  --surface-accent:var(--color-coral);
+  --surface-action-bg:var(--color-navy);
+  --surface-action-fg:var(--color-cream);
+}
+.surface-sun{
+  --surface-bg:var(--color-sun);
+  --surface-fg:var(--color-navy);
+  --surface-accent:var(--color-coral);
+  --surface-action-bg:var(--color-navy);
+  --surface-action-fg:var(--color-cream);
+}
+.surface-coral{
+  --surface-bg:var(--color-coral);
+  --surface-fg:var(--color-navy);
+  --surface-accent:var(--color-navy);
+  --surface-action-bg:var(--color-navy);
+  --surface-action-fg:var(--color-cream);
+}
+.surface-navy{
+  --surface-bg:var(--color-navy);
+  --surface-fg:var(--color-cream);
+  --surface-accent:var(--color-sun);
+  --surface-action-bg:var(--color-sun);
+  --surface-action-fg:var(--color-navy);
+  --logo-filter:brightness(0) invert(1);
+}
+.surface-cream,.surface-white,.surface-sun,.surface-coral,.surface-navy{
+  background:var(--surface-bg);
+  color:var(--surface-fg);
+}
+
+/* Logos are navy SVGs; turn them white on dark surfaces */
+.logo{filter:var(--logo-filter,none)}
+
+/* Superlumina outside of h1/h2 */
+.display{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-variation-settings:"DNST" var(--dnst);
+  text-transform:uppercase;
+}
+/* Set directly (not via a variable) so it also works on a span inside a heading */
+.density-light{font-variation-settings:"DNST" var(--dnst-light)}
+
+/* Montserrat Alternates, for event / news / person titles */
+.title{
+  font-family:var(--font-title);
+  font-weight:800;
+  line-height:1.2;
+  text-transform:none;
+}
+
+.lede{
+  font-size:var(--step-1);
+  max-inline-size:50ch;
+}
+
+.weight-semibold{font-weight:600}
+.text-small{font-size:var(--step--1)}
+
+.text-center{text-align:center}
+
+.accent{color:var(--surface-accent)}
+.muted{opacity:.8}

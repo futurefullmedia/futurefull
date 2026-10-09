@@ -1,0 +1,29 @@
+/* Colors come from the surface it sits on. Override per button with --btn-bg / --btn-fg / --btn-border. */
+.btn{
+  display:inline-block;
+  padding:1.25em 1.95em;
+  border:var(--border) solid var(--btn-border,var(--surface-action-bg));
+  border-radius:var(--radius-s);
+  background:var(--btn-bg,var(--surface-action-bg));
+  color:var(--btn-fg,var(--surface-action-fg));
+  font-size:.9rem;
+  font-weight:800;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  text-decoration:none;
+  cursor: pointer;
+}
+.btn[data-variant="accent"]{
+  --btn-bg:var(--color-coral);
+  --btn-fg:var(--color-navy);
+  --btn-border:var(--color-navy);
+}
+.btn[data-variant="outline"]{
+  --btn-bg:transparent;
+  --btn-fg:var(--surface-action-bg);
+}
+.btn[data-size="small"]{
+  padding:.55em 1.1em;
+  font-size:var(--step--1);
+  letter-spacing:.08em;
+}
