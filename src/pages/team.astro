@@ -3,11 +3,25 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 
 // Roles from the sponsor deck draft — confirm names, titles, and that everyone is okay being listed.
-const team = [
-  { name: 'Dain Saint', role: 'Founder & Artistic Director' },
-  { name: 'Cat Ramirez', role: 'Producer' },
+// Bios, photos, pronouns, and links come from Futurefull-Team-Highlights-Bios-and-Photos.pdf; anyone without them keeps the placeholder.
+type Member = { name: string; role: string; pronouns?: string; photo?: string; url?: string; bio?: string };
+const team: Member[] = [
+  {
+    name: 'Dain Saint', role: 'Founder & Artistic Director', pronouns: 'they/he',
+    photo: '/team/dain-saint.jpg', url: 'https://dainsaint.com',
+    bio: 'Dain Saint is an interactive storyteller in Philadelphia. They\u2019ve made indie games, immersive theatre, interactive journalism, and a bunch of weird music. They\u2019re building Futurefull, a community for creators telling stories about the future and the roads we take to get there. They will give you an existential crisis, respectfully.',
+  },
+  {
+    name: 'Cat Ramirez', role: 'Producer', pronouns: 'they/he/she',
+    photo: '/team/cat-ramirez.jpg', url: 'https://catramirez.com',
+    bio: 'Cat Ramirez is a queer, mixed race, Philly-based performance director and producer who loves logistical puzzles, community meals, and bisexual lighting. Cat is the Creative Producer and a worker-owner for Obvious Agency. They serve as a Board Member of the Stockton Rush Bartol Foundation, and are an alumni of the National New Play Network\u2019s Producer-In-Residence Program.',
+  },
   { name: 'Aetherius Bordeaux', role: 'Community & Outreach' },
-  { name: 'Mel Hsu', role: 'Operations' },
+  {
+    name: 'Mel Hsu', role: 'Operations Manager', pronouns: 'she/they',
+    photo: '/team/mel-hsu.jpg', url: 'https://www.melhsu.com',
+    bio: 'Mel Hsu is a spreadsheet nerd, a slow reader and a shameless instigator of kitchen dance parties. Rooted in Philly, Mel\u2019s restless spirit finds adventure across time zones and oceans as musical and administrative support for others who inspire her. Mel recently bought a laminator and it\u2019s changing their life.',
+  },
   { name: 'Troi Williams', role: 'Social Media' },
   { name: 'Markiesha Thompson', role: 'Development' },
   { name: 'Taj Rauch', role: 'Experience Design' },
@@ -45,13 +59,18 @@ const partners = ['The Laundromat Project', 'Caribbean Community of Philadelphia
 
       <div class="stack">
         <h3 class="eyebrow" data-rule>The people</h3>
-        <ul class="grid" role="list" style="--min:11rem;--space:var(--s1)">
+        <ul class="grid" role="list" style="--min:16rem;--space:var(--s2)">
           {team.map((p, i) => (
             <li class="stack space-s-1">
-              <div class:list={['slot display', avatarSurfaces[i % avatarSurfaces.length]]} data-shape="square" style="font-size:var(--step-3)">{initials(p.name)}</div>
-              <h4 class="title">{p.name}</h4>
+              {p.photo ? (
+                <div class="slot" data-shape="square"><img src={p.photo} width="640" height="640" alt={p.name} loading="lazy" /></div>
+              ) : (
+                <div class:list={['slot display', avatarSurfaces[i % avatarSurfaces.length]]} data-shape="square" style="font-size:var(--step-3)">{initials(p.name)}</div>
+              )}
+              <h4 class="title">{p.name}{p.pronouns && <span class="text-small muted weight-semibold"> ({p.pronouns})</span>}</h4>
               <p class="eyebrow accent">{p.role}</p>
-              <p class="text-small muted">[ one-line bio ]</p>
+              {p.bio ? <p class="text-small">{p.bio}</p> : <p class="text-small muted">[ one-line bio ]</p>}
+              {p.url && <p class="text-small"><a href={p.url}>{p.url.replace(/^https?:\/\/(www\.)?/, '')}</a></p>}
             </li>
           ))}
         </ul>
