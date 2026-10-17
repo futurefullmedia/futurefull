@@ -1,0 +1,8 @@
+.input{
+  min-inline-size:min(100%,18.75rem);
+  padding:.95em 1.35em;
+  border:var(--border) solid var(--border-color);
+  border-radius:var(--radius-s);
+  background:var(--color-cream);
+  color:var(--color-navy);
+}

@@ -1,0 +1,13 @@
+/* Small uppercase label: kickers, dates, section labels. data-rule adds an underline. */
+.eyebrow{
+  display:block;
+  font-size:var(--step--2);
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  line-height:1.6;
+}
+.eyebrow[data-rule]{
+  padding-block-end:.6em;
+  border-block-end:var(--border-thick) solid var(--border-color);
+}

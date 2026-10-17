@@ -1,0 +1,62 @@
+/* Design tokens: the only place raw values live. Everything else references these. */
+:root{
+  /* Brand colors */
+  --color-sun:#FBCA16;
+  --color-navy:#161543;
+  --color-coral:#FA4C57;
+  --color-cream:#FFF8DC;
+  --color-white:#fff;
+
+  /* Type families */
+  --font-display:Superlumina,sans-serif;
+  --font-body:Montserrat,sans-serif;
+  --font-title:"Montserrat Alternates",Montserrat,sans-serif;
+
+  /* Superlumina's DNST axis is density: 0 Thin · 12 Light · 26 Medium · 38 SemiBold · 74 Black · 100 Heavy.
+     SPED is slant (0–100). Use .density-light to lighten a run of text inside a heading. */
+  --dnst:74;
+  --dnst-light:25;
+
+  /* Type scale (fluid at the top end) */
+  --step--2:.75rem;
+  --step--1:.875rem;
+  --step-0:1.0625rem;
+  --step-1:1.25rem;
+  --step-2:clamp(1.4rem,2.6vw,2rem);
+  --step-3:clamp(2.4rem,4vw,3.4rem);
+  --step-4:clamp(2.4rem,5.5vw,4.2rem);
+  --step-5:clamp(2.6rem,7vw,5.6rem);
+
+  /* Space scale: modular, ratio 1.5, base 1rem */
+  --ratio:1.5;
+  --s0:1rem;
+  --s-1:calc(var(--s0) / var(--ratio));
+  --s-2:calc(var(--s-1) / var(--ratio));
+  --s1:calc(var(--s0) * var(--ratio));
+  --s2:calc(var(--s1) * var(--ratio));
+  --s3:calc(var(--s2) * var(--ratio));
+  --s4:calc(var(--s3) * var(--ratio));
+  --region-space:clamp(3.5rem,8vw,5.6rem);
+
+  /* Shape */
+  --border-color:var(--color-navy);
+  --border-thin:2px;
+  --border:3px;
+  --border-thick:4px;
+  --radius-s:14px;
+  --radius-m:20px;
+  --radius-l:24px;
+
+  --measure:60ch;
+  --wrap-width:1080px;
+}
+
+/* Layout knobs are set per element (.space-* classes, inline style) and must not leak into nested layouts,
+   so they're registered as non-inheriting. */
+@property --space{syntax:"*";inherits:false}
+@property --flow-space{syntax:"*";inherits:false}
+@property --measure{syntax:"*";inherits:false}
+@property --threshold{syntax:"*";inherits:false}
+@property --sidebar-width{syntax:"*";inherits:false}
+@property --content-min{syntax:"*";inherits:false}
+@property --min{syntax:"*";inherits:false}

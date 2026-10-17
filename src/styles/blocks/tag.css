@@ -1,0 +1,23 @@
+/* tag: a pill-ish label in a list. data-tilt gives the list its hand-placed look. */
+.tag{
+  padding:.6em 1.2em;
+  border:var(--border) solid var(--border-color);
+  border-radius:var(--radius-s);
+  font-size:.9rem;
+  font-weight:600;
+}
+.tag[data-tilt]:nth-child(odd){rotate:1deg}
+.tag[data-tilt]:nth-child(even){rotate:-1.5deg}
+
+/* badge: tiny capsule, e.g. IRL / URL */
+.badge{
+  display:inline-block;
+  margin-inline-end:.5rem;
+  padding:.2em .9em;
+  border:var(--border-thin) solid var(--border-color);
+  border-radius:99px;
+  font-size:.65rem;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}

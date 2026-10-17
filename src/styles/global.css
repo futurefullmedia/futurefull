@@ -1,0 +1,21 @@
+/* Entry point. CUBE CSS: Composition, Utility, Block, Exception.
+   Layer order = precedence, lowest first. Astro's scoped component <style>s are unlayered, so they win over all of these. */
+@layer reset, base, composition, utility, block;
+
+@import "./fonts.css";
+@import "./tokens.css";
+@import "./reset.css" layer(reset);
+@import "./base.css" layer(base);
+
+@import "./compositions.css" layer(composition);
+@import "./utilities.css" layer(utility);
+
+@import "./blocks/button.css" layer(block);
+@import "./blocks/eyebrow.css" layer(block);
+@import "./blocks/card.css" layer(block);
+@import "./blocks/tag.css" layer(block);
+@import "./blocks/steps.css" layer(block);
+@import "./blocks/slot.css" layer(block);
+@import "./blocks/quote.css" layer(block);
+@import "./blocks/signup.css" layer(block);
+@import "./blocks/strip.css" layer(block);

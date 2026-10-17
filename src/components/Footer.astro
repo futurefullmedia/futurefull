@@ -1,0 +1,60 @@
+---
+import Logo from "./Logo.astro";
+---
+<footer class="surface-navy">
+  <div class="wrap stack">
+    <div class="cluster space-s0 justify-between">
+      <Logo className="wordmark"/>
+      <ul class="cluster links space-s1" role="list">
+        <li><a href="https://www.instagram.com/futurefullstories" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+        <li><a href="https://www.threads.com/@futurefullstories" aria-label="Threads"><i class="fab fa-threads"></i></a></li>
+        <li><a href="mailto:hello@futurefullstories.com">Contact</a></li>
+      </ul>
+    </div>
+    <div class="sponsor">
+      <a class="cluster" href="https://www.fracturedatlas.org/" rel="noopener">
+        Fiscally sponsored by <img class="logo" src="/brand/fractured-atlas-logo.svg" alt="Fractured Atlas" />
+      </a>
+    </div>
+    <p class="legal">
+      Futurefull Media is a sponsored project of Fractured Atlas, a non-profit arts service organization. Contributions for the charitable purposes of Futurefull Media must be made payable to “Fractured Atlas” only and are tax-deductible to the extent permitted by law.
+    </p>
+  </div>
+</footer>
+
+
+<style is:global>
+  .wordmark{inline-size:12rem}
+</style>
+
+<style>
+  footer{
+    padding-block:34px;
+    font-size:var(--step--1);
+  }
+  
+  .links a{
+    font-weight:600;
+    text-decoration:none;
+  }
+  .links a:hover{color:var(--surface-accent)}
+  .links i{
+    font-size:1.8rem;
+    vertical-align:middle;
+  }
+  .sponsor{
+    padding-block-start:22px;
+    border-block-start:var(--border-thin) solid color-mix(in srgb,currentColor 20%,transparent);
+  }
+  .sponsor a{
+    font-weight:600;
+    text-decoration:none;
+  }
+  .sponsor img{block-size:30px}
+  .legal{
+    max-inline-size:none;
+    font-size:.72rem;
+    line-height:1.5;
+    opacity:.7;
+  }
+</style>

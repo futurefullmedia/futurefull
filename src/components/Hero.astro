@@ -1,0 +1,109 @@
+---
+import Nav from './Nav.astro';
+---
+
+<header class="hero surface-navy">
+  <video autoplay muted loop playsinline preload="metadata" poster="/hero-poster.jpg">
+    <source src="/hero-loop.mp4" type="video/mp4" />
+  </video>
+  <div class="wrap">
+    <Nav />
+    <h1>Come make <span data-cycle>futures</span> with us</h1>
+    <p>Futurefull tells interactive stories about better futures and the roads we take to get there.</p>
+    <div class="actions">
+      <a class="btn" href="#join">Join the mailing list</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .hero{
+    background:var(--color-navy) url("/hero-poster.jpg") 60% center/cover;
+    position:relative;
+    overflow:hidden;
+    isolation:isolate
+  }
+  
+  .hero video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:60% center;
+    z-index:-2;
+  }
+
+  .hero:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    background:linear-gradient(90deg,rgba(22,21,67,.92) 0,rgba(22,21,67,.66) 50%,rgba(22,21,67,.2) 100%)
+  }
+
+
+  .hero .wrap{
+    position:relative;
+    z-index:2;
+  }
+  .hero h1{
+    margin-top:50px;
+    max-width:12ch;
+  }
+  .hero h1 span{
+    color:var(--surface-accent);
+    display:block;
+    transition:opacity .4s,transform .4s
+  }
+
+  .hero h1 span.out{
+    opacity:0;
+    transform:translateY(.15em)
+  }
+
+  
+  .hero p{
+    max-width:34ch;
+    font-size:1.25rem;
+    font-weight:600;
+    margin:28px 0 34px
+  }
+
+  .hero .actions{
+    padding-bottom:110px
+  }
+
+  .hero .actions .btn+.btn{
+    margin-left:10px
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    .hero video{
+      display:none
+    }
+    
+    .hero h1 span{
+      transition:none
+    }
+  }
+</style>
+
+
+
+<script>
+  // Cycle the hero word.
+  const el = document.querySelector('[data-cycle]');
+  if (el && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const words = ['futures', 'worlds', 'dreams', 'music', 'stories', 'trouble'];
+    let i = 0;
+    setInterval(() => {
+      el.classList.add('out');
+      setTimeout(() => {
+        i = (i + 1) % words.length;
+        el.textContent = words[i];
+        el.classList.remove('out');
+      }, 400);
+    }, 3000);
+  }
+</script>

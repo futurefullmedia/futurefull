@@ -1,0 +1,5 @@
+/* Decorative pattern band between sections */
+.strip{
+  block-size:40px;
+  background:var(--color-sun) url("/brand/icon-pattern.svg") center/cover no-repeat;
+}
